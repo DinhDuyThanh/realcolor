@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg1" />
+
+    <Button
+        android:id="@+id/btnSetting"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="23dp"
+        android:background="@drawable/config"
+        android:onClick="buttonClick" />
+
+    <Button
+        android:id="@+id/btnHelp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBaseline="@+id/btnSetting"
+        android:layout_alignBottom="@+id/btnSetting"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/btnSetting"
+        android:background="@drawable/help"
+        android:onClick="buttonClick" />
+
+    <Button
+        android:id="@+id/btnRememberColor"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/btnHelp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/remember"
+        android:onClick="buttonClick" />
+
+    <Button
+        android:id="@+id/btnStudyColor"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/btnRememberColor"
+        android:layout_alignLeft="@+id/btnRememberColor"
+        android:background="@drawable/study"
+        android:onClick="buttonClick" 
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:id="@+id/animation1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/btnStudyColor"
+        android:src="@drawable/animation1" />
+
+    <ImageView
+        android:id="@+id/logoView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="-20dp"
+        android:layout_toLeftOf="@+id/btnRememberColor"
+        android:src="@drawable/animation2" />
+
+</RelativeLayout>
