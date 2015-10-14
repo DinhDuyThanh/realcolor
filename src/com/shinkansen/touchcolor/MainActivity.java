@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -45,6 +46,7 @@ import com.shinkansen.touchcolor.constant.Constant;
 import com.shinkansen.touchcolor.datahelper.RelateObjectDataSource;
 import com.shinkansen.touchcolor.soundmanager.SoundManager;
 
+@SuppressLint("NewApi")
 public class MainActivity extends Activity {
 
 	private Preview mPreview;
@@ -287,48 +289,58 @@ public class MainActivity extends Activity {
 	 */
 
 	private String getBestMatchingColorName(int pixelColor) {
+		SharedPreferences sharedPref1 = getSharedPreferences("language_data", MODE_PRIVATE);
+		String lgPref = sharedPref1.getString("language", "vi");
+		String[] colorarray = null;
+		if(lgPref.equals("vi")){
+			colorarray = Constant.COLOR_VI;
+		} else if(lgPref.equals("en")){
+			colorarray = Constant.COLOR_EN;
+		}else if(lgPref.equals("ja")){
+			colorarray = Constant.COLOR;
+		}	
 		Map<String, Integer> mColors = new HashMap<String, Integer>();
-		mColors.put("あおい", Color.rgb(0, 0, 255));
-		mColors.put("あおい", Color.rgb(0, 0, 238));
-		mColors.put("あおい", Color.rgb(0, 0, 205));
-		mColors.put("あおい", Color.rgb(0, 0, 139));
+		mColors.put(colorarray[1], Color.rgb(0, 0, 255));
+		mColors.put(colorarray[1], Color.rgb(0, 0, 238));
+		mColors.put(colorarray[1], Color.rgb(0, 0, 205));
+		mColors.put(colorarray[1], Color.rgb(0, 0, 139));
 		// mColors.put("cyan", Color.rgb(0, 255, 255));
 		// mColors.put("みどり", Color.rgb(0, 255, 0));
 		// mColors.put("みどり", Color.rgb(0, 238, 0));
 		// mColors.put("みどり", Color.rgb(0, 205, 0));
-		mColors.put("みどり", Color.rgb(0, 37, 0));
-		mColors.put("みどり", Color.rgb(0, 64, 0));
-		mColors.put("みどり", Color.rgb(0, 80, 0));
-		mColors.put("みどり", Color.rgb(0, 117, 0));
-		mColors.put("みどり", Color.rgb(0, 166, 0));
-		mColors.put("みどり", Color.rgb(0, 187, 0));
-		mColors.put("みどり", Color.rgb(0, 219, 0));
-		mColors.put("みどり", Color.rgb(0, 236, 0));
-		mColors.put("みどり", Color.rgb(40, 255, 40));
+		mColors.put(colorarray[2], Color.rgb(0, 37, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 64, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 80, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 117, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 166, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 187, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 219, 0));
+		mColors.put(colorarray[2], Color.rgb(0, 236, 0));
+		mColors.put(colorarray[2], Color.rgb(40, 255, 40));
 
-		mColors.put("きいろ", Color.rgb(255, 255, 0));
-		mColors.put("きいろ", Color.rgb(238, 238, 0));
-		mColors.put("きいろ", Color.rgb(238, 220, 130));
-		mColors.put("きいろ", Color.rgb(238, 201, 0));
-		mColors.put("きいろ", Color.rgb(255, 236, 139));
-		mColors.put("きいろ", Color.rgb(205, 205, 0));
+		mColors.put(colorarray[3], Color.rgb(255, 255, 0));
+		mColors.put(colorarray[3], Color.rgb(238, 238, 0));
+		mColors.put(colorarray[3], Color.rgb(238, 220, 130));
+		mColors.put(colorarray[3], Color.rgb(238, 201, 0));
+		mColors.put(colorarray[3], Color.rgb(255, 236, 139));
+		mColors.put(colorarray[3], Color.rgb(205, 205, 0));
 
 		// mColors.put("あかい", Color.rgb(206, 14, 12));
 		// mColors.put("あかい", Color.rgb(238, 22, 2));
 		// mColors.put("あかい", Color.rgb(255, 4, 4));
 		// mColors.put("あかい", Color.rgb(139, 11, 11));
 
-		mColors.put("あかい", Color.rgb(234, 0, 0));
-		mColors.put("あかい", Color.rgb(255, 0, 0));
-		mColors.put("あかい", Color.rgb(255, 45, 45));
+		mColors.put(colorarray[0], Color.rgb(234, 0, 0));
+		mColors.put(colorarray[0], Color.rgb(255, 0, 0));
+		mColors.put(colorarray[0], Color.rgb(255, 45, 45));
 
-		mColors.put("オレンジ", Color.rgb(255, 153, 18));
-		mColors.put("オレンジ", Color.rgb(237, 145, 33));
-		mColors.put("オレンジ", Color.rgb(255, 140, 0));
-		mColors.put("オレンジ", Color.rgb(255, 127, 0));
-		mColors.put("オレンジ", Color.rgb(255, 102, 0));
-		mColors.put("オレンジ", Color.rgb(255, 128, 0));
-		mColors.put("オレンジ", Color.rgb(234, 117, 0));
+		mColors.put(colorarray[4], Color.rgb(255, 153, 18));
+		mColors.put(colorarray[4], Color.rgb(237, 145, 33));
+		mColors.put(colorarray[4], Color.rgb(255, 140, 0));
+		mColors.put(colorarray[4], Color.rgb(255, 127, 0));
+		mColors.put(colorarray[4], Color.rgb(255, 102, 0));
+		mColors.put(colorarray[4], Color.rgb(255, 128, 0));
+		mColors.put(colorarray[4], Color.rgb(234, 117, 0));
 
 		//
 		// mColors.put("パープル", Color.rgb(148, 0, 211));
@@ -336,19 +348,19 @@ public class MainActivity extends Activity {
 		// mColors.put("パープル", Color.rgb(138, 43, 226));
 		// mColors.put("パープル", Color.rgb(155, 48, 255));
 		// mColors.put("パープル", Color.rgb(145, 44, 238));
-		mColors.put("パープル", Color.rgb(91, 0, 174));
-		mColors.put("パープル", Color.rgb(111, 0, 211));
-		mColors.put("パープル", Color.rgb(134, 0, 255));
-		mColors.put("パープル", Color.rgb(146, 26, 255));
-		mColors.put("パープル", Color.rgb(159, 53, 255));
+		mColors.put(colorarray[5], Color.rgb(91, 0, 174));
+		mColors.put(colorarray[5], Color.rgb(111, 0, 211));
+		mColors.put(colorarray[5], Color.rgb(134, 0, 255));
+		mColors.put(colorarray[5], Color.rgb(146, 26, 255));
+		mColors.put(colorarray[5], Color.rgb(159, 53, 255));
 
-		mColors.put("ピンク", Color.rgb(147, 0, 147));
-		mColors.put("ピンク", Color.rgb(174, 0, 174));
-		mColors.put("ピンク", Color.rgb(210, 0, 210));
-		mColors.put("ピンク", Color.rgb(232, 0, 232));
-		mColors.put("ピンク", Color.rgb(255, 0, 255));
-		mColors.put("ピンク", Color.rgb(255, 68, 255));
-		mColors.put("ピンク", Color.rgb(255, 119, 255));
+		mColors.put(colorarray[6], Color.rgb(147, 0, 147));
+		mColors.put(colorarray[6], Color.rgb(174, 0, 174));
+		mColors.put(colorarray[6], Color.rgb(210, 0, 210));
+		mColors.put(colorarray[6], Color.rgb(232, 0, 232));
+		mColors.put(colorarray[6], Color.rgb(255, 0, 255));
+		mColors.put(colorarray[6], Color.rgb(255, 68, 255));
+		mColors.put(colorarray[6], Color.rgb(255, 119, 255));
 
 		// mColors.put("pink", Color.rgb(255, 192, 203));
 		// mColors.put("ピンク", Color.rgb(238, 121, 159));
@@ -358,8 +370,8 @@ public class MainActivity extends Activity {
 		// mColors.put("ピンク", Color.rgb(238, 48, 167));
 		// mColors.put("ピンク", Color.rgb(255, 20, 147));
 
-		mColors.put("しろい", Color.rgb(255, 255, 255));
-		mColors.put("くろい", Color.rgb(0, 0, 0));
+		mColors.put(colorarray[7], Color.rgb(255, 255, 255));
+		mColors.put(colorarray[8], Color.rgb(0, 0, 0));
 
 		// largest difference is 255 for every colour component
 		int currentDifference = 3 * 255;

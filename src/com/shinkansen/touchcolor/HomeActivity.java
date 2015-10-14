@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.shinkansen.touchcolor.soundmanager.SoundManager;
 
@@ -101,7 +103,6 @@ public class HomeActivity extends Activity {
 			showSettingDialog();
 			break;
 		}
-
 		default:
 			break;
 		}
@@ -129,13 +130,81 @@ public class HomeActivity extends Activity {
 		// custom dialog
 		final Dialog dialog = new Dialog(this);
 		boolean turnOffSound;
+		SharedPreferences sharedPref1 = getSharedPreferences("language_data", MODE_PRIVATE);
+		String lgPref = sharedPref1.getString("language", "vi");
 		dialog.setContentView(R.layout.setting_dialog);
-		dialog.setTitle("設定");
 		
 		// get setting's used last time
 		SharedPreferences sharedPref = getSharedPreferences("sound_data", MODE_PRIVATE);
 		boolean isTurnOff = sharedPref.getBoolean("turnOffSound", false);
 		CheckBox chkSound = (CheckBox) dialog.findViewById(R.id.chkSound);
+		final RadioButton vi_la = (RadioButton) dialog.findViewById(R.id.vietnamese);
+		final RadioButton en_la = (RadioButton) dialog.findViewById(R.id.english);
+		final RadioButton ja_la = (RadioButton) dialog.findViewById(R.id.japanese);
+		if(lgPref.equals("vi")){
+			vi_la.setChecked(true);
+			en_la.setChecked(false);
+			ja_la.setChecked(false);
+			dialog.setTitle("Cài đặt");
+			chkSound.setText("Âm thanh");
+		} else if(lgPref.equals("en")){
+			vi_la.setChecked(false);
+			en_la.setChecked(true);
+			ja_la.setChecked(false);
+			dialog.setTitle("Setting");
+			chkSound.setText("Sound");
+		}else if(lgPref.equals("ja")){
+			vi_la.setChecked(false);
+			en_la.setChecked(false);
+			ja_la.setChecked(true);
+			dialog.setTitle("設定");
+		}	
+			
+		vi_la.setOnClickListener(new OnClickListener() {
+					
+			@Override
+			public void onClick(View v) {
+				if (((RadioButton)v).isChecked()){
+					Log.d("language","vietnam");
+					en_la.setChecked(false);
+					ja_la.setChecked(false);
+					SharedPreferences sharedPref = getSharedPreferences("language_data", MODE_PRIVATE);
+			    	SharedPreferences.Editor editor = sharedPref.edit();
+			    	editor.putString("language", "vi");
+			    	editor.commit();
+				}
+			}
+		});
+		en_la.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (((RadioButton)v).isChecked()){
+					Log.d("language","eng");
+					vi_la.setChecked(false);
+					ja_la.setChecked(false);
+					SharedPreferences sharedPref = getSharedPreferences("language_data", MODE_PRIVATE);
+			    	SharedPreferences.Editor editor = sharedPref.edit();
+			    	editor.putString("language", "en");
+			    	editor.commit();
+				}
+			}
+		});
+		ja_la.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (((RadioButton)v).isChecked()){
+					Log.d("language","ja");
+					en_la.setChecked(false);
+					vi_la.setChecked(false);
+					SharedPreferences sharedPref = getSharedPreferences("language_data", MODE_PRIVATE);
+			    	SharedPreferences.Editor editor = sharedPref.edit();
+			    	editor.putString("language", "ja");
+			    	editor.commit();
+				}
+			}
+		});
 		chkSound.setChecked(isTurnOff);
 		chkSound.setOnClickListener(new OnClickListener() {
 			

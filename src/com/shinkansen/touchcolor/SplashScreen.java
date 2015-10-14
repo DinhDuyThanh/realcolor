@@ -25,7 +25,8 @@ public class SplashScreen extends Activity {
 
         animation2.setVisible(true, true);
         animation2.start();
-//        SoundManager.getInstance().initSoundBackground(this);
+        
+        SoundManager.getInstance().initSoundBackground(this);
         SoundManager.getInstance().initSound(this);
  
         new Handler().postDelayed(new Runnable() {
